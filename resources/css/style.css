@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+
+body {
+    font-family: "Inter", sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+/* Active link styling for desktop */
+.nav-link.active-nav-link {
+    /* Use secondary color for text and a darker background for active state */
+    color: #ffc107; /* secondary */
+    background-color: #1e3a8a; /* blue-900 */
+    border-radius: 0.5rem; /* rounded-lg */
+}
+
+/* Page Navigation Logic */
+.page-section {
+    display: none;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.page-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Custom Hover Effects */
+.service-card:hover {
+    transform: translateY(-5px);
+    border-color: #fdb515;
+}
+
+/* Accordion transition */
+details > summary {
+    list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+    display: none;
+}
