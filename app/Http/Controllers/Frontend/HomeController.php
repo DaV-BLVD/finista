@@ -9,6 +9,8 @@ use App\Models\Stat;
 use App\Models\Partner;
 use App\Models\WhyFinista;
 use App\Models\HighlightedProduct;
+use App\Models\CoreValue;
+use App\Models\Solution;
 
 
 class HomeController extends Controller
@@ -24,7 +26,10 @@ class HomeController extends Controller
         $features = WhyFinista::orderBy('id')->get(); // for the features section
 
         $testimonials = Testimonial::orderBy('id')->get();
+
+        $solutions = Solution::all();
+
         // Pass to the view
-        return view("frontend.pages.home", compact('stats', 'partners', 'features', 'testimonials'));
+        return view("frontend.pages.home", compact('stats', 'partners', 'features', 'testimonials', 'solutions'));
     }
 }

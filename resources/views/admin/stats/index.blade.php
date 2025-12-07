@@ -35,6 +35,7 @@
                                 <div class="flex justify-center space-x-2">
                                     <a href="{{ route('stats.edit', $stat->id) }}"
                                         class="px-3 py-1 text-sm bg-primary text-white rounded-md hover:bg-primary/90">
+                                        <i class="fas fa-edit mr-1"></i>
                                         Edit
                                     </a>
                                     <form action="{{ route('stats.destroy', $stat->id) }}" method="POST"
@@ -43,6 +44,7 @@
                                         @method('DELETE')
                                         <button type="submit"
                                             class="px-3 py-1 text-sm bg-red-600 text-white rounded-md hover:bg-red-700">
+                                            <i class="fas fa-trash-alt mr-1"></i>
                                             Delete
                                         </button>
                                     </form>

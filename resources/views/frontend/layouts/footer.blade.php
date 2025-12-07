@@ -3,7 +3,7 @@
         <div class="flex flex-col md:flex-row justify-between items-start">
             <div class="mb-8 md:mb-0 w-full md:w-1/4">
                 <div class="flex items-center gap-2 mb-2">
-                    <img src="logo.png" alt="Finista Logo" class="w-10 pr-1">
+                    <img src="{{ asset('images/logo.png') }}" alt="Finista Logo" class="w-10 pr-1">
                     <span class="font-bold text-2xl">Finista</span>
                 </div>
                 <p class="text-blue-200 text-sm">Your trusted partner in financial growth.</p>

@@ -44,6 +44,8 @@
 
             <button type="submit" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary/90">Update
                 Testimonial</button>
+            <a href="{{ route('testimonials.index') }}"
+                class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">Cancel</a>
         </form>
     </div>
 @endsection

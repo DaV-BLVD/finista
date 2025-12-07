@@ -198,51 +198,39 @@
 
         <section class="py-20 bg-white border-t border-b border-gray-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
                 <div class="text-center mb-12">
                     <h2 class="text-3xl font-bold text-primary">Discover All Our Solutions</h2>
-                    <p class="text-lg text-gray-600 max-w-2xl mx-auto mt-2">We offer a full spectrum of financial
-                        tools for every stage of your life.</p>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto mt-2">
+                        We offer a full spectrum of financial tools for every stage of your life.
+                    </p>
                 </div>
 
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
 
-                    <div
-                        class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
-                        <i class="fa-solid fa-piggy-bank text-4xl text-secondary mb-3"></i>
-                        <h4 class="font-bold text-lg text-gray-900">Savings & Checking</h4>
-                        <p class="text-sm text-gray-500 mt-1">Daily banking made easy.</p>
-                    </div>
+                    @forelse($solutions as $solution)
+                        <div
+                            class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                            <i class="{{ $solution->icon }} text-4xl text-{{ $solution->color }} mb-3"></i>
 
-                    <div
-                        class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
-                        <i class="fa-solid fa-house-chimney-window text-4xl text-primary mb-3"></i>
-                        <h4 class="font-bold text-lg text-gray-900">Mortgages & Loans</h4>
-                        <p class="text-sm text-gray-500 mt-1">Financing for every ambition.</p>
-                    </div>
-
-                    <div
-                        class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
-                        <i class="fa-solid fa-chart-line text-4xl text-secondary mb-3"></i>
-                        <h4 class="font-bold text-lg text-gray-900">Wealth & Investing</h4>
-                        <p class="text-sm text-gray-500 mt-1">Grow your portfolio with experts.</p>
-                    </div>
-
-                    <div
-                        class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
-                        <i class="fa-solid fa-briefcase text-4xl text-primary mb-3"></i>
-                        <h4 class="font-bold text-lg text-gray-900">Business Solutions</h4>
-                        <p class="text-sm text-gray-500 mt-1">Tools for corporate growth.</p>
-                    </div>
+                            <h4 class="font-bold text-lg text-gray-900">{{ $solution->title }}</h4>
+                            <p class="text-sm text-gray-500 mt-1">{{ $solution->description }}</p>
+                        </div>
+                    @empty
+                        <p class="col-span-4 text-center text-gray-500">No solutions added yet.</p>
+                    @endforelse
                 </div>
 
                 <div class="text-center mt-12">
-                    <button onclick="navigateTo('products')"
-                        class="px-8 py-3 bg-secondary text-primary rounded-lg font-bold hover:bg-yellow-400 transition shadow-md">
-                        View All Products <i class="fa-solid fa-arrow-right ml-2"></i>
-                    </button>
+                    <a href="{{ url('/services') }}"
+                        class="inline-block px-8 py-3 bg-secondary text-primary rounded-lg font-bold hover:bg-yellow-400 transition shadow-md">
+                        Explore Our Services <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
                 </div>
+
             </div>
         </section>
+
 
         <section class="py-20 bg-primary/5 text-gray-900">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -262,11 +250,12 @@
                         <div class="text-center">
                             <i class="fa-solid fa-calculator text-5xl text-secondary mb-4"></i>
                             <h4 class="font-bold text-xl text-gray-900 mb-4">Get in Touch!</h4>
-                            <p class="text-gray-600 text-sm mb-6">Plan Your Automation!</p>
-                            <button onclick="navigateTo('calculator')"
-                                class="w-full px-6 py-3 bg-primary text-white rounded-lg font-bold hover:bg-blue-900 transition shadow-md">
+                            <p class="text-gray-600 text-sm mb-6">Plan Your Automation and Reach out to us!</p>
+                            <a href="{{ url('/contact') }}"
+                                class="w-full block text-center px-6 py-3 bg-primary text-white rounded-lg font-bold hover:bg-blue-900 transition shadow-md">
                                 Start Planning Now
-                            </button>
+                            </a>
+
                         </div>
                     </div>
                 </div>
@@ -287,10 +276,11 @@
                         </p>
                     </div>
                     <div class="md:w-1/3 flex justify-center md:justify-end">
-                        <button onclick="navigateTo('loans')"
-                            class="px-8 py-4 bg-secondary text-primary rounded-lg font-bold text-lg hover:bg-yellow-400 transition transform hover:scale-105 shadow-xl">
+                        <a href="{{ url('/products') }}"
+                            class="px-8 py-4 bg-secondary text-primary rounded-lg font-bold text-lg hover:bg-yellow-400 transition transform hover:scale-105 shadow-xl inline-block text-center">
                             Explore Products <i class="fa-solid fa-arrow-right ml-2"></i>
-                        </button>
+                        </a>
+
                     </div>
                 </div>
             </div>

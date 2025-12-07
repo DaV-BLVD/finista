@@ -48,3 +48,29 @@
 .text-dark {
     color: #0f172a;
 }
+
+/* scrollbar for the sidebar  */
+/* Add this to your main CSS file or where you include custom styles */
+.styled-scrollbar::-webkit-scrollbar {
+    width: 6px; /* Width of the vertical scrollbar */
+}
+
+.styled-scrollbar::-webkit-scrollbar-track {
+    background: #374151; /* Dark track color (e.g., bg-gray-700) */
+    border-radius: 10px;
+}
+
+.styled-scrollbar::-webkit-scrollbar-thumb {
+    background: #ffae00; /* Thumb color (your hover/active color) */
+    border-radius: 10px;
+}
+
+.styled-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #f59e0b; /* Slightly darker thumb on hover */
+}
+
+/* Optional: For Firefox compatibility */
+.styled-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #ffae00 #374151;
+}

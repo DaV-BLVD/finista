@@ -28,6 +28,14 @@ use App\Http\Controllers\Admin\StatController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\WhyFinistaController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\CoreValueController;
+use App\Http\Controllers\Admin\AboutSectionController;
+use App\Http\Controllers\Admin\JourneyController;
+use App\Http\Controllers\Admin\LeadershipTeamController;
+use App\Http\Controllers\Admin\SolutionController;
+use App\Http\Controllers\Admin\StepController;
+use App\Http\Controllers\Admin\FeatureController;
+use App\Http\Controllers\Admin\ProductController;
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', function () {
@@ -49,6 +57,22 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('/admin/dashboard/why_finista', WhyFinistaController::class);
 
     Route::resource('/admin/dashboard/testimonials', TestimonialController::class);
+
+    Route::resource('/admin/dashboard/core_values', CoreValueController::class);
+
+    Route::resource('/admin/dashboard/about_section', AboutSectionController::class)->only(['edit', 'update', 'index']);
+
+    Route::resource('/admin/dashboard/journeys', JourneyController::class)->except(['show']);
+
+    Route::resource('/admin/dashboard/leadership', LeadershipTeamController::class)->except(['show']);
+
+    Route::resource('/admin/dashboard/solutions', SolutionController::class);
+
+    Route::resource('/admin/dashboard/steps', StepController::class);
+
+    Route::resource('admin/dashboard/features', FeatureController::class);
+
+    Route::resource('/admin/dashboard/products', ProductController::class);
 
 });
 

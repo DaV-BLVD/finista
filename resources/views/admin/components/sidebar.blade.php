@@ -5,7 +5,7 @@
         </a>
     </div>
 
-    <nav class="flex-1 px-2 py-4 space-y-2 overflow-y-auto">
+    <nav class="flex-1 px-2 py-4 space-y-2 overflow-y-auto styled-scrollbar">
         <a href="{{ route('admin.dashboard') }}" class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg
             {{ request()->routeIs('admin.dashboard') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
             <i class="fas fa-tachometer-alt w-6"></i>
@@ -26,45 +26,81 @@
 
         <a href="{{ route('stats.index') }}"
             class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg {{ request()->routeIs('stats.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
-            <i class="fas fa-image w-6"></i>
+            <i class="fa-solid fa-chart-area w-6"></i>
             <span class="font-medium">Stats</span>
         </a>
 
         <a href="{{ route('partners.index') }}"
             class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg {{ request()->routeIs('partners.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
-            <i class="fas fa-image w-6"></i>
+            <i class="fa-solid fa-handshake w-6"></i>
             <span class="font-medium">Partners</span>
         </a>
 
         <a href="{{ route('why_finista.index') }}" class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg 
             {{ request()->routeIs('why_finista.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
-            <i class="fas fa-image w-6"></i>
+            <i class="fa-solid fa-circle-question w-6"></i>
             <span class="font-medium">Why Finista</span>
         </a>
 
-        <a href="#" class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg 
+        <a href="#"
+            class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg 
             {{ request()->routeIs('highlighted_product.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
-            <i class="fas fa-image w-6"></i>
+            <i class="fa-brands fa-product-hunt w-6"></i>
             <span class="font-medium">Highlighted Product</span>
+        </a>
+
+        <a href="{{ route('solutions.index') }}" class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg 
+            {{ request()->routeIs('solutions.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
+            <i class="fa-solid fa-lightbulb w-6"></i>
+            <span class="font-medium">Discover Solutions</span>
         </a>
 
         <a href="{{ route('testimonials.index') }}" class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg 
             {{ request()->routeIs('testimonials.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
-            <i class="fas fa-image w-6"></i>
+            <i class="fa-solid fa-quote-left w-6"></i>
             <span class="font-medium">Testimonials</span>
         </a>
 
+        <a href="{{ route('steps.index') }}" class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg 
+            {{ request()->routeIs('steps.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
+            <i class="fa-solid fa-shoe-prints w-6"></i>
+            <span class="font-medium">Steps</span>
+        </a>
+
+        <a href="{{ route('features.index') }}" class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg 
+            {{ request()->routeIs('features.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
+            <i class="fa-solid fa-file-circle-plus w-6"></i>
+            <span class="font-medium">Features List</span>
+        </a>
+
+        <a href="{{ route('products.index') }}" class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg 
+            {{ request()->routeIs('products.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
+            <i class="fa-solid fa-clipboard-list w-6"></i>
+            <span class="font-medium">Products List</span>
+        </a>
+
+        <a href="{{ route('core_values.index') }}" class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg 
+            {{ request()->routeIs('core_values.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
+            <i class="fa-solid fa-sun w-6"></i>
+            <span class="font-medium">Core Values</span>
+        </a>
+
+        <a href="{{ route('journeys.index') }}" class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg 
+            {{ request()->routeIs('journeys.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
+            <i class="fa-solid fa-road w-6"></i>
+            <span class="font-medium">Journey</span>
+        </a>
+
+        <a href="{{ route('leadership.index') }}" class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg 
+            {{ request()->routeIs('leadership.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
+            <i class="fa-solid fa-hand-fist w-6"></i>
+            <span class="font-medium">Leadership</span>
+        </a>
 
         <a href="{{ route('footer_contacts.index') }}"
             class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg {{ request()->routeIs('footer_contacts.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
             <i class="fas fa-phone w-6"></i>
             <span class="font-medium">Footer Contacts</span>
-        </a>
-
-        <a href="#"
-            class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg {{ request()->routeIs('admin.dashboard.settings') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
-            <i class="fas fa-cog w-6"></i>
-            <span class="font-medium">Settings</span>
         </a>
     </nav>
 
