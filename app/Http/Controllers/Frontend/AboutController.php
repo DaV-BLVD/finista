@@ -8,6 +8,7 @@ use App\Models\CoreValue;
 use App\Models\AboutSection;
 use App\Models\Journey;
 use App\Models\LeadershipTeam;
+use App\Models\Header;
 
 class AboutController extends Controller
 {
@@ -22,7 +23,9 @@ class AboutController extends Controller
 
         $leaders = LeadershipTeam::all(); // Or orderBy('id') if you want a specific order
 
-        return view("frontend.pages.about", compact('coreValues', 'about', 'mission', 'journeys', 'leaders'));
+        $header = Header::where('page', 'about')->first();
+
+        return view("frontend.pages.about", compact('coreValues', 'about', 'mission', 'journeys', 'leaders', 'header'));
 
     }
 }

@@ -4,41 +4,69 @@
     <div id="about" class="page-section active">
         <section class="relative bg-primary text-white overflow-hidden">
             <div class="absolute inset-0 bg-blue-900 opacity-50"></div>
-            <div class="absolute right-0 top-0 w-1/2 h-full bg-secondary opacity-10 skew-x-12 transform translate-x-20">
+            <div
+                class="absolute right-0 top-0 w-1/2 h-full bg-secondary opacity-10 skew-x-12 transform translate-x-20 hidden md:block">
             </div>
 
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 relative z-10">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     <div>
-                        <div
-                            class="inline-block px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm font-semibold mb-6 border border-secondary/30">
-                            About Us
-                        </div>
-                        <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
-                            Get to Know Us
-                        </h1>
-                        <p class="text-lg text-blue-100 mb-8 max-w-lg">
-                            Explore more About us on how we automate things
-                        </p>
+                        @if($header->badge_text)
+                            <div
+                                class="inline-flex items-center px-4 py-1 bg-secondary/20 text-secondary rounded-full text-sm font-semibold mb-6 border border-secondary/30">
+                                <i class="fas fa-handshake mr-2 text-sm"></i> {{ $header->badge_text }}
+                            </div>
+                        @endif
+
+                        @if($header->title)
+                            <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">{!! $header->title !!}</h1>
+                        @endif
+
+                        @if($header->description)
+                            <p class="text-lg text-blue-100 mb-8 max-w-lg">{{ $header->description }}</p>
+                        @endif
+
                         <div class="flex flex-col sm:flex-row gap-4">
-                            <button onclick="navigateTo('services')"
-                                class="px-8 py-3 bg-secondary text-primary rounded-lg font-bold hover:bg-yellow-400 transition shadow-lg text-center">
-                                Our Products
-                            </button>
-                            <button onclick="navigateTo('contact')"
-                                class="px-8 py-3 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white/10 transition text-center">
-                                Open Account
-                            </button>
+                            @if($header->button1_text)
+                                <a href="{{ $header->button1_link }}"
+                                    class="px-8 py-3 bg-secondary text-primary rounded-lg font-bold hover:bg-secondary/90 transition shadow-xl text-center flex items-center justify-center space-x-2">
+                                    {{ $header->button1_text }}
+                                </a>
+                            @endif
+
+                            @if($header->button2_text)
+                                <a href="{{ $header->button2_link }}"
+                                    class="px-8 py-3 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white/10 transition text-center flex items-center justify-center space-x-2">
+                                    {{ $header->button2_text }}
+                                </a>
+                            @endif
                         </div>
                     </div>
-                    <div class="relative hidden md:block">
-                        <!-- Abstract Graphic Representation -->
-                        <!-- <div
-                                                            class="relative bg-gradient-to-tr from-secondary to-yellow-300 rounded-2xl p-1 shadow-2xl transform rotate-3 hover:rotate-0 transition duration-500">
-                                                            <div class="bg-white rounded-xl overflow-hidden h-96 flex items-center justify-center">
-                                                                <i class="fa-solid fa-building-columns text-9xl text-primary opacity-80"></i>
-                                                            </div>
-                                                        </div> -->
+
+                    <div class="hidden md:flex justify-center">
+                        @if($header->image)
+                            <div class="group perspective-1000">
+                                <div
+                                    class="bg-white rounded-3xl p-2 shadow-2xl transform transition duration-500 group-hover:rotate-y-2 group-hover:-rotate-x-2 group-hover:scale-105 max-w-lg w-full relative">
+
+                                    <div class="rounded-2xl overflow-hidden border-4 border-secondary relative shadow-inner">
+                                        <img src="{{ asset('storage/' . $header->image) }}" class="w-full h-96 object-cover">
+                                        <div class="absolute inset-0 bg-black/10 pointer-events-none rounded-2xl"></div>
+                                    </div>
+
+                                    <div
+                                        class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-96 h-6 bg-black/20 rounded-full blur-xl opacity-50 group-hover:scale-x-110 group-hover:-translate-y-1 transition duration-500">
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <div
+                                class="relative bg-white/20 rounded-2xl p-1 shadow-2xl transform hover:scale-105 transition duration-500">
+                                <div class="bg-primary rounded-xl overflow-hidden h-96 flex items-center justify-center">
+                                    <i class="fa-solid fa-building-columns text-9xl text-white opacity-60"></i>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Step;
 use App\Models\Feature;
+use App\Models\Header;
 
 class ServicesController extends Controller
 {
@@ -15,6 +16,8 @@ class ServicesController extends Controller
 
         $features = Feature::with('cards.bullets')->get();
 
-        return view("frontend.pages.services", compact('steps', 'features'));
+        $header = Header::where('page', 'services')->first();
+
+        return view("frontend.pages.services", compact('steps', 'features', 'header'));
     }
 }

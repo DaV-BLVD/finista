@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Feature;
 use App\Models\Product;
 use App\Models\MoreProduct;
+use App\Models\Header;
 
 
 class ProductsController extends Controller
@@ -19,6 +20,8 @@ class ProductsController extends Controller
 
         $items = MoreProduct::orderBy('order_index')->get();
 
-        return view("frontend.pages.products", compact("features", 'products', 'items'));
+        $header = Header::where('page', 'products')->first();
+
+        return view("frontend.pages.products", compact("features", 'products', 'items', 'header'));
     }
 }

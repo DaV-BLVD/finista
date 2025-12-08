@@ -8,6 +8,7 @@ use App\Models\FooterContacts;
 use App\Models\MapLocation;
 use App\Models\Feature;
 use App\Models\Faq;
+use App\Models\Header;
 
 class ContactController extends Controller
 {
@@ -22,6 +23,8 @@ class ContactController extends Controller
 
         $faqs = Faq::orderBy('sort_order')->get();
 
-        return view("frontend.pages.contact", compact("channels", 'locations', 'features', 'faqs'));
+        $header = Header::where('page', 'contact')->first();
+
+        return view("frontend.pages.contact", compact("channels", 'locations', 'features', 'faqs','header'));
     }
 }

@@ -11,40 +11,54 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 relative z-10">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     <div>
-                        <div
-                            class="inline-block px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm font-semibold mb-6 border border-secondary/30">
-                            Trusted Financial Partner
-                        </div>
+                        @if($header->badge_text)
+                            <div
+                                class="inline-block px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm font-semibold mb-6 border border-secondary/30">
+                                {{ $header->badge_text }}
+                            </div>
+                        @endif
+
                         <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
-                            Banking Made <span class="text-secondary">Simple</span> & Secure
+                            {!! $header->title !!}
                         </h1>
-                        <p class="text-lg text-blue-100 mb-8 max-w-lg">
-                            Experience seamless financial services tailored to your needs. From digital vouchers to
-                            instant deposits, Finista is here for you.
-                        </p>
+
+                        @if($header->description)
+                            <p class="text-lg text-blue-100 mb-8 max-w-lg">{{ $header->description }}</p>
+                        @endif
+
                         <div class="flex flex-col sm:flex-row gap-4">
-                            <button onclick="navigateTo('services')"
-                                class="px-8 py-3 bg-secondary text-primary rounded-lg font-bold hover:bg-yellow-400 transition shadow-lg text-center">
-                                Our Services
-                            </button>
-                            <button onclick="navigateTo('contact')"
-                                class="px-8 py-3 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white/10 transition text-center">
-                                Open Account
-                            </button>
+                            @if($header->button1_text)
+                                <a href="{{ $header->button1_link }}"
+                                    class="px-8 py-3 bg-secondary text-primary rounded-lg font-bold hover:bg-yellow-400 transition shadow-lg text-center">
+                                    {{ $header->button1_text }}
+                                </a>
+                            @endif
+
+                            @if($header->button2_text)
+                                <a href="{{ $header->button2_link }}"
+                                    class="px-8 py-3 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white/10 transition text-center">
+                                    {{ $header->button2_text }}
+                                </a>
+                            @endif
                         </div>
                     </div>
+
                     <div class="relative hidden md:block">
-                        <!-- Abstract Graphic Representation -->
                         <div
                             class="relative bg-gradient-to-tr from-secondary to-yellow-300 rounded-2xl p-1 shadow-2xl transform rotate-3 hover:rotate-0 transition duration-500">
                             <div class="bg-white rounded-xl overflow-hidden h-96 flex items-center justify-center">
-                                <i class="fa-solid fa-building-columns text-9xl text-primary opacity-80"></i>
+                                @if($header->image)
+                                    <img src="{{ asset('storage/' . $header->image) }}" class="h-full object-contain">
+                                @else
+                                    <i class="fa-solid fa-building-columns text-9xl text-primary opacity-80"></i>
+                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
 
         <!-- Stats Section -->
         <section class="bg-[#00284d] py-12 text-white border-b border-blue-900">
@@ -376,14 +390,6 @@
                         </div>
                     @endforeach
                 </div>
-
-                <div class="text-center mt-12">
-                    <button onclick="navigateTo('blog')"
-                        class="px-6 py-3 border-2 border-primary text-primary rounded-lg font-bold hover:bg-primary hover:text-white transition duration-300">
-                        About Us
-                    </button>
-                </div>
-
             </div>
         </section>
 

@@ -2,28 +2,76 @@
 
 @section('content')
     <div id="products" class="page-section active">
-        <section class="relative bg-primary text-white py-20 md:py-32 overflow-hidden">
+        <section class="relative bg-primary text-white overflow-hidden">
             <div class="absolute inset-0 bg-blue-900 opacity-50"></div>
-            <!-- <div
-                                        class="absolute left-0 bottom-0 w-1/3 h-1/2 bg-secondary opacity-10 skew-y-12 transform -translate-x-1/4">
-                                    </div> -->
+            <div
+                class="absolute right-0 top-0 w-1/2 h-full bg-secondary opacity-10 skew-x-12 transform translate-x-20 hidden md:block">
+            </div>
 
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                <h1 class="text-5xl md:text-6xl font-extrabold mb-4 font-sans leading-tight">
-                    Innovative Banking Solutions 🏦
-                </h1>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 relative z-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center text-center md:text-left">
+                    <div>
+                        @if($header->badge_text)
+                            <div
+                                class="inline-block px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm font-semibold mb-6 border border-secondary/30">
+                                {{ $header->badge_text }}
+                            </div>
+                        @endif
 
-                <h2 class="text-xl md:text-2xl text-secondary font-semibold mb-6">
-                    Redefining the Future of Self-Service and Digital Finance.
-                </h2>
+                        @if($header->title)
+                            <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">{!! $header->title !!}</h1>
+                        @endif
 
-                <p class="text-lg text-blue-100 max-w-3xl mx-auto font-sans">
-                    From our 24/7 automated machines to world-class wealth management, explore the diverse range of
-                    products and services designed to make banking **instant, secure, and uniquely convenient** for
-                    you.
-                </p>
+                        @if($header->description)
+                            <p class="text-lg text-blue-100 mb-8 max-w-lg md:max-w-none">{{ $header->description }}</p>
+                        @endif
+
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                            @if($header->button1_text)
+                                <a href="{{ $header->button1_link }}"
+                                    class="px-8 py-3 bg-secondary text-primary rounded-lg font-bold hover:bg-yellow-400 transition shadow-lg text-center">
+                                    {{ $header->button1_text }}
+                                </a>
+                            @endif
+
+                            @if($header->button2_text)
+                                <a href="{{ $header->button2_link }}"
+                                    class="px-8 py-3 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white/10 transition text-center">
+                                    {{ $header->button2_text }}
+                                </a>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="hidden md:flex justify-center">
+                        @if($header->image)
+                            <div class="group perspective-1000">
+                                <div
+                                    class="bg-white rounded-3xl p-2 shadow-2xl transform transition duration-500 group-hover:rotate-y-2 group-hover:-rotate-x-2 group-hover:scale-105 max-w-lg w-full relative">
+
+                                    <div class="rounded-2xl overflow-hidden border-4 border-secondary relative shadow-inner">
+                                        <img src="{{ asset('storage/' . $header->image) }}" class="w-full h-80 object-cover">
+                                        <div class="absolute inset-0 bg-black/10 pointer-events-none rounded-2xl"></div>
+                                    </div>
+
+                                    <!-- Dynamic floating shadow -->
+                                    <div
+                                        class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-80 h-6 bg-black/20 rounded-full blur-xl opacity-50 group-hover:scale-x-110 group-hover:-translate-y-1 transition duration-500">
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <div
+                                class="w-full h-72 bg-white/10 rounded-xl shadow-2xl flex items-center justify-center text-white/50 border border-white/20">
+                                <i class="fas fa-university text-5xl"></i>
+                            </div>
+                        @endif
+                    </div>
+                </div>
             </div>
         </section>
+
+
 
         <!-- ## ✨ Product Highlights -->
 
@@ -439,58 +487,62 @@
         </section> --}}
 
         <section class="py-20 bg-gray-50 font-sans">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            @foreach($items as $item)
+                    @foreach($items as $item)
 
-                @if($item->type === 'large')
-                    <div class="service-card bg-primary text-white p-8 rounded-xl shadow-xl border-4 border-secondary 
-                        transition duration-300 hover:scale-[1.02] col-span-full lg:col-span-{{ $item->column_span }}">
-                        
-                        <div class="flex items-center mb-4">
-                            <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center text-primary text-3xl mr-4">
-                                <i class="{{ $item->icon }}"></i>
+                        @if($item->type === 'large')
+                            <div
+                                class="service-card bg-primary text-white p-8 rounded-xl shadow-xl border-4 border-secondary 
+                                                            transition duration-300 hover:scale-[1.02] col-span-full lg:col-span-{{ $item->column_span }}">
+
+                                <div class="flex items-center mb-4">
+                                    <div
+                                        class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center text-primary text-3xl mr-4">
+                                        <i class="{{ $item->icon }}"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-extrabold">{{ $item->title }}</h3>
+                                </div>
+
+                                <p class="text-blue-100">{{ $item->description }}</p>
                             </div>
-                            <h3 class="text-2xl font-extrabold">{{ $item->title }}</h3>
-                        </div>
+                        @endif
 
-                        <p class="text-blue-100">{{ $item->description }}</p>
-                    </div>
-                @endif
+                        @if($item->type === 'regular')
+                            <div
+                                class="service-card bg-white p-6 rounded-xl shadow-md border border-gray-100 transition hover:shadow-lg">
 
-                @if($item->type === 'regular')
-                    <div class="service-card bg-white p-6 rounded-xl shadow-md border border-gray-100 transition hover:shadow-lg">
+                                <div
+                                    class="w-12 h-12 bg-{{ $item->color }}/10 rounded-full flex items-center justify-center text-{{ $item->color }} text-xl mb-4">
+                                    <i class="{{ $item->icon }}"></i>
+                                </div>
 
-                        <div class="w-12 h-12 bg-{{ $item->color }}/10 rounded-full flex items-center justify-center text-{{ $item->color }} text-xl mb-4">
-                            <i class="{{ $item->icon }}"></i>
-                        </div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">{{ $item->title }}</h3>
+                                <p class="text-gray-600 text-sm">{{ $item->description }}</p>
+                            </div>
+                        @endif
 
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">{{ $item->title }}</h3>
-                        <p class="text-gray-600 text-sm">{{ $item->description }}</p>
-                    </div>
-                @endif
+                        @if($item->type === 'cta')
+                            <div class="bg-secondary p-6 rounded-xl shadow-xl border-2 border-primary text-center">
 
-                @if($item->type === 'cta')
-                    <div class="bg-secondary p-6 rounded-xl shadow-xl border-2 border-primary text-center">
+                                <h3 class="text-lg font-bold text-primary mb-2">{{ $item->title }}</h3>
+                                <p class="text-gray-900 text-sm mb-4">{{ $item->description }}</p>
 
-                        <h3 class="text-lg font-bold text-primary mb-2">{{ $item->title }}</h3>
-                        <p class="text-gray-900 text-sm mb-4">{{ $item->description }}</p>
+                                <a href="{{ $item->button_url }}"
+                                    class="px-4 py-2 bg-primary text-white rounded font-bold hover:bg-blue-900 text-sm w-full block">
+                                    {{ $item->button_text }}
+                                </a>
+                            </div>
+                        @endif
 
-                        <a href="{{ $item->button_url }}"
-                            class="px-4 py-2 bg-primary text-white rounded font-bold hover:bg-blue-900 text-sm w-full block">
-                            {{ $item->button_text }}
-                        </a>
-                    </div>
-                @endif
+                    @endforeach
 
-            @endforeach
+                </div>
 
-        </div>
-
-    </div>
-</section>
+            </div>
+        </section>
 
 
 

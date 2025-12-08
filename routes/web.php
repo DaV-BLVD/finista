@@ -47,6 +47,7 @@ use App\Http\Controllers\Admin\AdminContactInquiryController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\HighlightedProductController;
 use App\Http\Controllers\Admin\NewsPostController;
+use App\Http\Controllers\Admin\HeaderController;
 
 
 Route::middleware(['auth', 'admin'])->group(function () {
@@ -57,8 +58,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    Route::get('/admin/dashboard/header_images', [HeaderImagesController::class, 'index'])->name('admin.dashboard.headerImages');
 
     Route::resource('/admin/dashboard/footer_contacts', FooterContactsController::class);
 
@@ -104,6 +103,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::resource('/admin/dashboard/news', NewsPostController::class);
 
+    Route::resource('/admin/dashboard/headers', HeaderController::class);
 });
 
 require __DIR__ . '/auth.php';

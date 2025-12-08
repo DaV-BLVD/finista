@@ -12,11 +12,14 @@ use App\Models\HighlightedProduct;
 use App\Models\CoreValue;
 use App\Models\Solution;
 use App\Models\NewsPost;
+use App\Models\Header;
 
 class HomeController extends Controller
 {
     public function index()
     {
+        $header = Header::where('page', 'home')->first();
+
         // Fetch all stats from the database
         $stats = Stat::orderBy('id')->get();
 
@@ -34,6 +37,6 @@ class HomeController extends Controller
         $news = NewsPost::orderBy('order_index')->get();
 
         // Pass to the view
-        return view("frontend.pages.home", compact('stats', 'partners', 'features', 'testimonials', 'solutions', 'highlightedProduct', 'news'));
+        return view("frontend.pages.home", compact('header', 'stats', 'partners', 'features', 'testimonials', 'solutions', 'highlightedProduct', 'news'));
     }
 }

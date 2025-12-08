@@ -18,8 +18,8 @@
             <span class="font-medium">Users</span>
         </a>
 
-        <a href="{{ route('admin.dashboard.headerImages') }}"
-            class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg {{ request()->routeIs('admin.dashboard.headerImages') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
+        <a href="{{ route('headers.index') }}"
+            class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg {{ request()->routeIs('headers.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
             <i class="fas fa-image w-6"></i>
             <span class="font-medium">Header Images</span>
         </a>
