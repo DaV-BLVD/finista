@@ -126,7 +126,8 @@
                             <div
                                 class="bg-primary rounded-2xl h-[500px] flex items-center justify-center relative overflow-hidden">
                                 <div class="absolute inset-0">
-                                    <img src="{{ asset('storage/' . $highlightedProduct->image) }}" alt="{{ $highlightedProduct->subtitle }}"
+                                    <img src="{{ asset('storage/' . $highlightedProduct->image) }}"
+                                        alt="{{ $highlightedProduct->subtitle }}"
                                         class="w-full h-full object-cover opacity-70" />
                                 </div>
                             </div>
@@ -134,7 +135,8 @@
                     </div>
                     <div class="md:w-1/2">
                         <h1 class="text-3xl md:text-4xl font-bold text-primary mb-6">{{ $highlightedProduct->title }}</h1>
-                        <h2 class="text-2xl md:text-3xl font-bold text-secondary mb-3">{{ $highlightedProduct->subtitle }}</h2>
+                        <h2 class="text-2xl md:text-3xl font-bold text-secondary mb-3">{{ $highlightedProduct->subtitle }}
+                        </h2>
                         <p class="text-lg text-gray-600 mb-8">{{ $highlightedProduct->description }}</p>
                         <ul class="space-y-4 mb-8">
                             @foreach($highlightedProduct->features as $feature)
@@ -297,7 +299,7 @@
         </section>
 
 
-        <section class="py-20 bg-gray-200">
+        {{-- <section class="py-20 bg-gray-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl font-bold text-primary mb-2">Finista Insights & News</h2>
@@ -349,6 +351,41 @@
                     </button>
                 </div>
             </div>
+        </section> --}}
+
+        <section class="py-20 bg-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-primary mb-2">Finista Insights & News</h2>
+                    <p class="text-lg text-gray-600">Stay updated with our latest news and expert financial tips.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    @foreach ($news as $item)
+                        <div
+                            class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition duration-300">
+                            <div class="h-40 bg-primary/20 flex items-center justify-center">
+                                <img src="{{ asset('storage/' . $item->image) }}" alt="" class="h-full object-contain">
+                            </div>
+
+                            <div class="p-6">
+                                <h4 class="font-bold text-lg text-gray-900 mb-2">{{ $item->title }}</h4>
+                                <p class="text-gray-600 text-sm mb-4">{{ $item->subtitle }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <div class="text-center mt-12">
+                    <button onclick="navigateTo('blog')"
+                        class="px-6 py-3 border-2 border-primary text-primary rounded-lg font-bold hover:bg-primary hover:text-white transition duration-300">
+                        About Us
+                    </button>
+                </div>
+
+            </div>
         </section>
+
     </div>
 @endsection

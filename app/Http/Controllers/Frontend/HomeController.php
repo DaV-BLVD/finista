@@ -11,8 +11,7 @@ use App\Models\WhyFinista;
 use App\Models\HighlightedProduct;
 use App\Models\CoreValue;
 use App\Models\Solution;
-
-
+use App\Models\NewsPost;
 
 class HomeController extends Controller
 {
@@ -32,7 +31,9 @@ class HomeController extends Controller
 
         $highlightedProduct = HighlightedProduct::orderBy('order_index')->first(); // Only first product
 
+        $news = NewsPost::orderBy('order_index')->get();
+
         // Pass to the view
-        return view("frontend.pages.home", compact('stats', 'partners', 'features', 'testimonials', 'solutions', 'highlightedProduct'));
+        return view("frontend.pages.home", compact('stats', 'partners', 'features', 'testimonials', 'solutions', 'highlightedProduct', 'news'));
     }
 }

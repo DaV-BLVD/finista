@@ -61,6 +61,12 @@
             <span class="font-medium">Testimonials</span>
         </a>
 
+        <a href="{{ route('news.index') }}" class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg 
+            {{ request()->routeIs('news.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
+            <i class="fa-solid fa-radio w-6"></i>
+            <span class="font-medium">News</span>
+        </a>
+
         <a href="{{ route('steps.index') }}" class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg 
             {{ request()->routeIs('steps.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
             <i class="fa-solid fa-shoe-prints w-6"></i>
