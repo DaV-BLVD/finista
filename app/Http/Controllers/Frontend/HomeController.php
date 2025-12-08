@@ -13,6 +13,7 @@ use App\Models\CoreValue;
 use App\Models\Solution;
 
 
+
 class HomeController extends Controller
 {
     public function index()
@@ -29,7 +30,9 @@ class HomeController extends Controller
 
         $solutions = Solution::all();
 
+        $highlightedProduct = HighlightedProduct::orderBy('order_index')->first(); // Only first product
+
         // Pass to the view
-        return view("frontend.pages.home", compact('stats', 'partners', 'features', 'testimonials', 'solutions'));
+        return view("frontend.pages.home", compact('stats', 'partners', 'features', 'testimonials', 'solutions', 'highlightedProduct'));
     }
 }

@@ -42,10 +42,10 @@
             <span class="font-medium">Why Finista</span>
         </a>
 
-        <a href="#"
+        <a href="{{ route('highlighted_products.index') }}"
             class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg 
-            {{ request()->routeIs('highlighted_product.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
-            <i class="fa-brands fa-product-hunt w-6"></i>
+            {{ request()->routeIs('highlighted_products.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
+            <i class="fa-solid fa-computer w-6"></i>
             <span class="font-medium">Highlighted Product</span>
         </a>
 

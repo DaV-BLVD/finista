@@ -125,63 +125,42 @@
                             class="bg-white p-2 rounded-3xl shadow-2xl rotate-3 transform hover:rotate-0 transition duration-500 max-w-xs mx-auto">
                             <div
                                 class="bg-primary rounded-2xl h-[500px] flex items-center justify-center relative overflow-hidden">
-
                                 <div class="absolute inset-0">
-                                    <img src="kiosk__home.png" alt="Banking Kiosk"
+                                    <img src="{{ asset('storage/' . $highlightedProduct->image) }}" alt="{{ $highlightedProduct->subtitle }}"
                                         class="w-full h-full object-cover opacity-70" />
-                                </div>
-
-                                <div class="text-center relative z-10 p-6">
-                                    <!-- <i class="fa-solid fa-fingerprint text-6xl text-secondary mb-4"></i> -->
-                                    <h4 class="text-white text-xl font-bold mb-2">Kiosk Machine</h4>
-                                    <p class="text-blue-200 text-sm">A kiosk machine offers quick self-service
-                                        banking for deposits, withdrawals, and account updates.
-                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="md:w-1/2">
-                        <h1 class="text-3xl md:text-4xl font-bold text-primary mb-6">Our Main Highlighted Product
-                        </h1>
-                        <h2 class="text-2xl md:text-3xl font-bold text-secondary mb-3">Kiosk Machine</h2>
-                        <p class="text-lg text-gray-600 mb-8">
-                            A kiosk machine is a self-service banking unit that allows customers to quickly perform
-                            essential transactions—such as deposits, withdrawals, account inquiries, and bill
-                            payments—without waiting in line at a service counter.
-                        </p>
+                        <h1 class="text-3xl md:text-4xl font-bold text-primary mb-6">{{ $highlightedProduct->title }}</h1>
+                        <h2 class="text-2xl md:text-3xl font-bold text-secondary mb-3">{{ $highlightedProduct->subtitle }}</h2>
+                        <p class="text-lg text-gray-600 mb-8">{{ $highlightedProduct->description }}</p>
                         <ul class="space-y-4 mb-8">
-                            <li class="flex items-center gap-3">
-                                <i class="fa-solid fa-check-circle text-green-500 text-xl"></i>
-                                <span class="text-gray-700">Self-Service Transactions</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <i class="fa-solid fa-check-circle text-green-500 text-xl"></i>
-                                <span class="text-gray-700">Instant Processing</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <i class="fa-solid fa-check-circle text-green-500 text-xl"></i>
-                                <span class="text-gray-700">User-Friendly Interface</span>
-                            </li>
+                            @foreach($highlightedProduct->features as $feature)
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-check-circle text-green-500 text-xl"></i>
+                                    <span class="text-gray-700">{{ $feature }}</span>
+                                </li>
+                            @endforeach
                         </ul>
+
+                        {{-- Leave the "Need Immediate Help?" section as-is --}}
                         <div class="space-y-4 max-w-sm">
                             <div class="p-6 bg-gray-100 rounded-xl shadow-lg border-l-4 border-secondary">
                                 <div class="flex items-center mb-3">
                                     <i class="fa-solid fa-headset text-3xl text-primary mr-4"></i>
                                     <h4 class="text-xl font-bold text-gray-900">Need Immediate Help?</h4>
                                 </div>
-
                                 <p class="text-gray-600 text-sm mb-4">
-                                    Connect with a banking specialist instantly via live chat or request a
-                                    personalized callback.
+                                    Connect with a banking specialist instantly via live chat or request a personalized
+                                    callback.
                                 </p>
-
                                 <div class="flex gap-3">
                                     <button onclick="openLiveChat()"
                                         class="flex-1 px-4 py-2 bg-secondary text-primary rounded-lg font-bold text-sm hover:bg-yellow-400 transition shadow-md">
                                         <i class="fa-solid fa-comment-dots mr-1"></i> Email
                                     </button>
-
                                     <button onclick="openCallbackForm()"
                                         class="flex-1 px-4 py-2 border-2 border-primary text-primary rounded-lg font-bold text-sm hover:bg-primary hover:text-white transition">
                                         <i class="fa-solid fa-phone mr-1"></i> Request Call
@@ -189,10 +168,12 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
         </section>
+
 
 
 
@@ -364,7 +345,7 @@
                 <div class="text-center mt-12">
                     <button onclick="navigateTo('blog')"
                         class="px-6 py-3 border-2 border-primary text-primary rounded-lg font-bold hover:bg-primary hover:text-white transition duration-300">
-                        View All Insights
+                        About Us
                     </button>
                 </div>
             </div>

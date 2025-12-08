@@ -45,6 +45,8 @@ use App\Http\Controllers\Admin\MoreProductController;
 use App\Http\Controllers\Admin\MapLocationController;
 use App\Http\Controllers\Admin\AdminContactInquiryController;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\HighlightedProductController;
+
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', function () {
@@ -97,6 +99,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::resource('/admin/dashboard/faqs', FaqController::class);
 
+    Route::resource('/admin/dashboard/highlighted_products', HighlightedProductController::class);
 
 });
 
