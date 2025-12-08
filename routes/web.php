@@ -36,6 +36,7 @@ use App\Http\Controllers\Admin\SolutionController;
 use App\Http\Controllers\Admin\StepController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\MoreProductController;
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', function () {
@@ -73,6 +74,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('admin/dashboard/features', FeatureController::class);
 
     Route::resource('/admin/dashboard/products', ProductController::class);
+
+    Route::resource('/admin/dashboard/more_products', MoreProductController::class);
 
 });
 

@@ -328,7 +328,7 @@
         <!-- ## 💳 Additional Services Grid -->
 
         <!-- ## 💡 IoT Product Grid -->
-        <section class="py-20 bg-gray-50 font-sans">
+        {{-- <section class="py-20 bg-gray-50 font-sans">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
@@ -436,7 +436,63 @@
 
                 </div>
             </div>
-        </section>
+        </section> --}}
+
+        <section class="py-20 bg-gray-50 font-sans">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            @foreach($items as $item)
+
+                @if($item->type === 'large')
+                    <div class="service-card bg-primary text-white p-8 rounded-xl shadow-xl border-4 border-secondary 
+                        transition duration-300 hover:scale-[1.02] col-span-full lg:col-span-{{ $item->column_span }}">
+                        
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center text-primary text-3xl mr-4">
+                                <i class="{{ $item->icon }}"></i>
+                            </div>
+                            <h3 class="text-2xl font-extrabold">{{ $item->title }}</h3>
+                        </div>
+
+                        <p class="text-blue-100">{{ $item->description }}</p>
+                    </div>
+                @endif
+
+                @if($item->type === 'regular')
+                    <div class="service-card bg-white p-6 rounded-xl shadow-md border border-gray-100 transition hover:shadow-lg">
+
+                        <div class="w-12 h-12 bg-{{ $item->color }}/10 rounded-full flex items-center justify-center text-{{ $item->color }} text-xl mb-4">
+                            <i class="{{ $item->icon }}"></i>
+                        </div>
+
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">{{ $item->title }}</h3>
+                        <p class="text-gray-600 text-sm">{{ $item->description }}</p>
+                    </div>
+                @endif
+
+                @if($item->type === 'cta')
+                    <div class="bg-secondary p-6 rounded-xl shadow-xl border-2 border-primary text-center">
+
+                        <h3 class="text-lg font-bold text-primary mb-2">{{ $item->title }}</h3>
+                        <p class="text-gray-900 text-sm mb-4">{{ $item->description }}</p>
+
+                        <a href="{{ $item->button_url }}"
+                            class="px-4 py-2 bg-primary text-white rounded font-bold hover:bg-blue-900 text-sm w-full block">
+                            {{ $item->button_text }}
+                        </a>
+                    </div>
+                @endif
+
+            @endforeach
+
+        </div>
+
+    </div>
+</section>
+
+
 
     </div>
 @endsection

@@ -79,6 +79,12 @@
             <span class="font-medium">Products List</span>
         </a>
 
+        <a href="{{ route('more_products.index') }}" class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg 
+            {{ request()->routeIs('more_products.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
+            <i class="fa-solid fa-clipboard-list w-6"></i>
+            <span class="font-medium">More Products</span>
+        </a>
+
         <a href="{{ route('core_values.index') }}" class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg 
             {{ request()->routeIs('core_values.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
             <i class="fa-solid fa-sun w-6"></i>

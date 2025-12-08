@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Feature;
 use App\Models\Product;
+use App\Models\MoreProduct;
 
 
 class ProductsController extends Controller
@@ -16,6 +17,8 @@ class ProductsController extends Controller
 
         $products = Product::with('features')->get();
 
-        return view("frontend.pages.products", compact("features", 'products'));
+        $items = MoreProduct::orderBy('order_index')->get();
+
+        return view("frontend.pages.products", compact("features", 'products', 'items'));
     }
 }
