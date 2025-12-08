@@ -4,7 +4,8 @@
 <div class="p-6">
 
     <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-bold text-primary">Footer Contact</h1>
+        <h1 class="text-2xl font-bold text-primary">Contact</h1>
+        <h2>(Gets Displayed in the <b>Footer</b> and <b>Contact Page</b>)</h2>
 
         @if(!$footerContacts)
             <a href="{{ route('footer_contacts.create') }}"

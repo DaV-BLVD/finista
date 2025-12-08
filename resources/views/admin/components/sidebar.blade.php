@@ -103,10 +103,22 @@
             <span class="font-medium">Leadership</span>
         </a>
 
+        <a href="{{ route('map_locations.index') }}"
+            class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg {{ request()->routeIs('map_locations.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
+            <i class="fa-solid fa-location-dot w-6"></i>
+            <span class="font-medium">Map Locations</span>
+        </a>
+
+        <a href="{{ route('contact_inquiries.index') }}"
+            class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg {{ request()->routeIs('contact_inquiries.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
+            <i class="fa-solid fa-person-circle-question w-6"></i>
+            <span class="font-medium">Inquiries</span>
+        </a>
+
         <a href="{{ route('footer_contacts.index') }}"
             class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg {{ request()->routeIs('footer_contacts.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
             <i class="fas fa-phone w-6"></i>
-            <span class="font-medium">Footer Contacts</span>
+            <span class="font-medium">Contacts</span>
         </a>
     </nav>
 

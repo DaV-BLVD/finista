@@ -9,12 +9,17 @@ use App\Http\Controllers\Frontend\ServicesController;
 use App\Http\Controllers\Frontend\ProductsController;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\ContactController;
+use App\Http\Controllers\Frontend\ContactInquiryController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/services', [ServicesController::class, 'index'])->name('services');
 Route::get('/products', [ProductsController::class, 'index'])->name('products');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+
+Route::post('/contact', [ContactInquiryController::class, 'store'])->name('contact.store');
+
+
 // frontend End
 
 
@@ -37,6 +42,8 @@ use App\Http\Controllers\Admin\StepController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\MoreProductController;
+use App\Http\Controllers\Admin\MapLocationController;
+use App\Http\Controllers\Admin\AdminContactInquiryController;
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', function () {
@@ -76,6 +83,16 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('/admin/dashboard/products', ProductController::class);
 
     Route::resource('/admin/dashboard/more_products', MoreProductController::class);
+
+    Route::resource('/admin/dashboard/map_locations', MapLocationController::class);
+
+    Route::resource('/admin/dashboard/contact_inquiries', AdminContactInquiryController::class);
+
+    Route::put('/admin/dashboard/contact_inquiries/{contactInquiry}/resolve', [AdminContactInquiryController::class, 'markResolved'])
+        ->name('contact_inquiries.markResolved');
+
+    Route::put('/admin/dashboard/contact_inquiries/{contactInquiry}/undo', [AdminContactInquiryController::class, 'undoResolved'])
+        ->name('contact_inquiries.undoResolved');
 
 });
 
