@@ -44,6 +44,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\MoreProductController;
 use App\Http\Controllers\Admin\MapLocationController;
 use App\Http\Controllers\Admin\AdminContactInquiryController;
+use App\Http\Controllers\Admin\FaqController;
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', function () {
@@ -93,6 +94,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::put('/admin/dashboard/contact_inquiries/{contactInquiry}/undo', [AdminContactInquiryController::class, 'undoResolved'])
         ->name('contact_inquiries.undoResolved');
+
+    Route::resource('/admin/dashboard/faqs', FaqController::class);
+
 
 });
 

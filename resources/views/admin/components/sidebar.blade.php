@@ -115,6 +115,12 @@
             <span class="font-medium">Inquiries</span>
         </a>
 
+        <a href="{{ route('faqs.index') }}"
+            class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg {{ request()->routeIs('faqs.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
+            <i class="fa-brands fa-battle-net w-6"></i>
+            <span class="font-medium">FAQs</span>
+        </a>
+
         <a href="{{ route('footer_contacts.index') }}"
             class="flex items-center px-4 py-3 hover:bg-[#ffae00] hover:rounded-lg {{ request()->routeIs('footer_contacts.*') ? 'bg-[#ffae00] text-black font-semibold rounded-lg' : '' }}">
             <i class="fas fa-phone w-6"></i>

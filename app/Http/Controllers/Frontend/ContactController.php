@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\FooterContacts;
 use App\Models\MapLocation;
 use App\Models\Feature;
+use App\Models\Faq;
 
 class ContactController extends Controller
 {
@@ -19,6 +20,8 @@ class ContactController extends Controller
 
         $features = Feature::orderBy('order_index')->get(); // fetch all features
 
-        return view("frontend.pages.contact", compact("channels", 'locations', 'features'));
+        $faqs = Faq::orderBy('sort_order')->get();
+
+        return view("frontend.pages.contact", compact("channels", 'locations', 'features', 'faqs'));
     }
 }

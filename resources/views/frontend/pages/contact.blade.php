@@ -252,87 +252,26 @@
                         </div>
 
                         <div class="space-y-6">
-                            {{-- FAQ Item 1 --}}
-                            <details
-                                class="group bg-white border border-gray-100 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg open:shadow-xl open:border-gray-200 open:bg-gray-50/50">
-                                <summary
-                                    class="flex justify-between items-center p-6 sm:p-8 cursor-pointer list-none select-none">
-                                    <span
-                                        class="font-bold text-xl text-slate-800 group-open:text-primary transition-colors">How
-                                        do I open a new account?</span>
-                                    <span
-                                        class="ml-6 flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 group-open:bg-primary group-open:text-white transition-all duration-300 group-open:rotate-180">
-                                        <i class="fa-solid fa-chevron-down text-base"></i>
-                                    </span>
-                                </summary>
-                                <div class="px-6 sm:px-8 pb-8 pt-0 text-gray-600 text-lg leading-relaxed">
-                                    You can open an account by visiting any of our branches with a valid ID and proof of
-                                    address, or by using the 'A/C Opening' service on this website. Our digital onboarding
-                                    allows for instant verification in most cases.
-                                </div>
-                            </details>
-
-                            {{-- FAQ Item 2 --}}
-                            <details
-                                class="group bg-white border border-gray-100 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg open:shadow-xl open:border-gray-200 open:bg-gray-50/50">
-                                <summary
-                                    class="flex justify-between items-center p-6 sm:p-8 cursor-pointer list-none select-none">
-                                    <span
-                                        class="font-bold text-xl text-slate-800 group-open:text-primary transition-colors">What
-                                        are the fees for withdrawals?</span>
-                                    <span
-                                        class="ml-6 flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 group-open:bg-primary group-open:text-white transition-all duration-300 group-open:rotate-180">
-                                        <i class="fa-solid fa-chevron-down text-base"></i>
-                                    </span>
-                                </summary>
-                                <div class="px-6 sm:px-8 pb-8 pt-0 text-gray-600 text-lg leading-relaxed">
-                                    Withdrawals from Finista ATMs are free for account holders. Withdrawals from other
-                                    network ATMs may incur a small fee of $2. Premium account holders enjoy unlimited free
-                                    withdrawals worldwide.
-                                </div>
-                            </details>
-
-                            {{-- FAQ Item 3 --}}
-                            <details
-                                class="group bg-white border border-gray-100 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg open:shadow-xl open:border-gray-200 open:bg-gray-50/50">
-                                <summary
-                                    class="flex justify-between items-center p-6 sm:p-8 cursor-pointer list-none select-none">
-                                    <span
-                                        class="font-bold text-xl text-slate-800 group-open:text-primary transition-colors">How
-                                        secure is the digital voucher system?</span>
-                                    <span
-                                        class="ml-6 flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 group-open:bg-primary group-open:text-white transition-all duration-300 group-open:rotate-180">
-                                        <i class="fa-solid fa-chevron-down text-base"></i>
-                                    </span>
-                                </summary>
-                                <div class="px-6 sm:px-8 pb-8 pt-0 text-gray-600 text-lg leading-relaxed">
-                                    Our digital vouchers are encrypted with 256-bit SSL technology. Each voucher has a
-                                    unique one-time-use code for maximum security, and all transactions are monitored by our
-                                    AI-driven fraud detection system.
-                                </div>
-                            </details>
-
-                            {{-- FAQ Item 4 --}}
-                            <details
-                                class="group bg-white border border-gray-100 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg open:shadow-xl open:border-gray-200 open:bg-gray-50/50">
-                                <summary
-                                    class="flex justify-between items-center p-6 sm:p-8 cursor-pointer list-none select-none">
-                                    <span
-                                        class="font-bold text-xl text-slate-800 group-open:text-primary transition-colors">Can
-                                        I pay international utility bills?</span>
-                                    <span
-                                        class="ml-6 flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 group-open:bg-primary group-open:text-white transition-all duration-300 group-open:rotate-180">
-                                        <i class="fa-solid fa-chevron-down text-base"></i>
-                                    </span>
-                                </summary>
-                                <div class="px-6 sm:px-8 pb-8 pt-0 text-gray-600 text-lg leading-relaxed">
-                                    Currently, we support utility payments for domestic providers only. We are actively
-                                    working on cross-border partnerships to enable international payments in the next
-                                    quarter.
-                                </div>
-                            </details>
+                            @foreach($faqs as $faq)
+                                <details
+                                    class="group bg-white border border-gray-100 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg open:shadow-xl open:border-gray-200 open:bg-gray-50/50">
+                                    <summary
+                                        class="flex justify-between items-center p-6 sm:p-8 cursor-pointer list-none select-none">
+                                        <span
+                                            class="font-bold text-xl text-slate-800 group-open:text-primary transition-colors">{{ $faq->question }}</span>
+                                        <span
+                                            class="ml-6 flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 group-open:bg-primary group-open:text-white transition-all duration-300 group-open:rotate-180">
+                                            <i class="fa-solid fa-chevron-down text-base"></i>
+                                        </span>
+                                    </summary>
+                                    <div class="px-6 sm:px-8 pb-8 pt-0 text-gray-600 text-lg leading-relaxed">
+                                        {!! nl2br(e($faq->answer)) !!}
+                                    </div>
+                                </details>
+                            @endforeach
                         </div>
                     </div>
+
 
                 </div>
             </div>
