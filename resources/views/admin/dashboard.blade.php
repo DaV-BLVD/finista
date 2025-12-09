@@ -1,60 +1,59 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Admin Dashboard')
-
 @section('content')
-    <div class="mb-6">
-        <h2 class="text-2xl font-bold text-gray-800">Dashboard</h2>
-    </div>
+    <div class="p-6 max-w-full mx-auto">
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div class="bg-white rounded-lg p-5 shadow border-l-4 border-primary flex items-center justify-between">
+        {{-- Dashboard Header --}}
+        <div class="flex items-center justify-between mb-8">
             <div>
-                <p class="text-gray-500 text-sm font-medium uppercase">Total Revenue</p>
-                <h3 class="text-2xl font-bold text-gray-800">$45,231</h3>
+                <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight flex items-center">
+                    <i class="fas fa-th-large mr-3 text-secondary"></i>
+                    Dashboard Overview
+                </h1>
+                <p class="text-gray-500 mt-1 ml-1">Manage your website content and analytics.</p>
             </div>
-            <div class="bg-primary bg-opacity-10 p-3 rounded-full text-primary">
-                <i class="fas fa-dollar-sign text-xl"></i>
+
+            {{-- Optional Date or Action --}}
+            <div class="hidden sm:block text-sm text-gray-400 font-medium">
+                {{ now()->format('l, F j, Y') }}
             </div>
         </div>
-        <div class="bg-white rounded-lg p-5 shadow border-l-4 border-secondary flex items-center justify-between">
-            <div>
-                <p class="text-gray-500 text-sm font-medium uppercase">New Users</p>
-                <h3 class="text-2xl font-bold text-gray-800">2,345</h3>
-            </div>
-            <div class="bg-secondary bg-opacity-30 p-3 rounded-full text-secondary">
-                <i class="fas fa-user-plus text-xl"></i>
-            </div>
-        </div>
-    </div>
 
-    <div class="bg-white rounded-lg shadow p-6">
-        <h3 class="text-lg font-bold text-gray-800 mb-4">Recent Activity</h3>
-        <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse">
-                <thead>
-                    <tr>
-                        <th
-                            class="py-2 px-3 bg-gray-100 font-bold uppercase text-xs text-gray-600 border-b border-gray-200">
-                            User</th>
-                        <th
-                            class="py-2 px-3 bg-gray-100 font-bold uppercase text-xs text-gray-600 border-b border-gray-200">
-                            Role</th>
-                        <th
-                            class="py-2 px-3 bg-gray-100 font-bold uppercase text-xs text-gray-600 border-b border-gray-200">
-                            Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="hover:bg-gray-50">
-                        <td class="py-3 px-3 border-b border-gray-200">{{ Auth::user()->name }}</td>
-                        <td class="py-3 px-3 border-b border-gray-200">Admin</td>
-                        <td class="py-3 px-3 border-b border-gray-200"><span
-                                class="bg-green-100 text-green-700 py-1 px-2 rounded-full text-xs">Active</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        {{-- Content Grid --}}
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+
+            {{-- Row 1: Core Management --}}
+            <x-admin.card title="Users" :count="$usersCount" icon="fas fa-users" color="primary" />
+            <x-admin.card title="Headers" :count="$headersCount" icon="fas fa-heading" color="secondary" />
+            <x-admin.card title="Partners" :count="$partnersCount" icon="fas fa-handshake" color="blue" />
+            <x-admin.card title="Products" :count="$productsCount" icon="fas fa-box-open" color="primary" />
+
+            {{-- Row 2: Content & Marketing --}}
+            <x-admin.card title="Highlighted Products" :count="$highlightedProductsCount" icon="fas fa-star"
+                color="secondary" />
+            <x-admin.card title="More Products" :count="$moreProductsCount" icon="fas fa-boxes" color="blue" />
+            <x-admin.card title="Solutions" :count="$solutionsCount" icon="fas fa-lightbulb" color="primary" />
+            <x-admin.card title="Features" :count="$featuresCount" icon="fas fa-list-ul" color="secondary" />
+
+            {{-- Row 3: Engagement --}}
+            <x-admin.card title="Testimonials" :count="$testimonialsCount" icon="fas fa-comment-dots" color="green" />
+            <x-admin.card title="News" :count="$newsCount" icon="fas fa-newspaper" color="primary" />
+            <x-admin.card title="Inquiries" :count="$inquiriesCount" icon="fas fa-envelope" color="red" />
+            <x-admin.card title="FAQs" :count="$faqsCount" icon="fas fa-question-circle" color="secondary" />
+
+            {{-- Row 4: Company Info --}}
+            <x-admin.card title="Why Finista" :count="$whyFinistaCount" icon="fas fa-info" color="blue" />
+            <x-admin.card title="Core Values" :count="$coreValuesCount" icon="fas fa-heart" color="red" />
+            <x-admin.card title="Journey" :count="$journeysCount" icon="fas fa-road" color="secondary" />
+            <x-admin.card title="Leadership" :count="$leadershipCount" icon="fas fa-user-tie" color="primary" />
+
+            {{-- Row 5: Utility & Footer --}}
+            <x-admin.card title="Steps" :count="$stepsCount" icon="fas fa-shoe-prints" color="secondary" />
+            <x-admin.card title="Stats" :count="$statsCount" icon="fas fa-chart-line" color="green" />
+            <x-admin.card title="Map Locations" :count="$mapLocationsCount" icon="fas fa-map-marked-alt" color="blue" />
+            <x-admin.card title="Footer Contacts" :count="$footerContactsCount" icon="fas fa-address-book"
+                color="primary" />
+
         </div>
     </div>
 @endsection

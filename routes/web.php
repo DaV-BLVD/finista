@@ -27,7 +27,7 @@ Route::post('/contact', [ContactInquiryController::class, 'store'])->name('conta
 // backend
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Admin\HeaderImagesController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FooterContactsController;
 use App\Http\Controllers\Admin\StatController;
 use App\Http\Controllers\Admin\PartnerController;
@@ -48,62 +48,75 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\HighlightedProductController;
 use App\Http\Controllers\Admin\NewsPostController;
 use App\Http\Controllers\Admin\HeaderController;
+use App\Http\Controllers\Admin\AdminUsersController;
 
-
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
-
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    Route::resource('/admin/dashboard/footer_contacts', FooterContactsController::class);
-
-    Route::resource('/admin/dashboard/stats', StatController::class);
-
-    Route::resource('/admin/dashboard/partners', PartnerController::class);
-
-    Route::resource('/admin/dashboard/why_finista', WhyFinistaController::class);
-
-    Route::resource('/admin/dashboard/testimonials', TestimonialController::class);
-
-    Route::resource('/admin/dashboard/core_values', CoreValueController::class);
-
-    Route::resource('/admin/dashboard/about_section', AboutSectionController::class)->only(['edit', 'update', 'index']);
-
-    Route::resource('/admin/dashboard/journeys', JourneyController::class)->except(['show']);
-
-    Route::resource('/admin/dashboard/leadership', LeadershipTeamController::class)->except(['show']);
-
-    Route::resource('/admin/dashboard/solutions', SolutionController::class);
-
-    Route::resource('/admin/dashboard/steps', StepController::class);
-
-    Route::resource('admin/dashboard/features', FeatureController::class);
-
-    Route::resource('/admin/dashboard/products', ProductController::class);
-
-    Route::resource('/admin/dashboard/more_products', MoreProductController::class);
-
-    Route::resource('/admin/dashboard/map_locations', MapLocationController::class);
-
-    Route::resource('/admin/dashboard/contact_inquiries', AdminContactInquiryController::class);
-
-    Route::put('/admin/dashboard/contact_inquiries/{contactInquiry}/resolve', [AdminContactInquiryController::class, 'markResolved'])
-        ->name('contact_inquiries.markResolved');
-
-    Route::put('/admin/dashboard/contact_inquiries/{contactInquiry}/undo', [AdminContactInquiryController::class, 'undoResolved'])
-        ->name('contact_inquiries.undoResolved');
-
-    Route::resource('/admin/dashboard/faqs', FaqController::class);
-
-    Route::resource('/admin/dashboard/highlighted_products', HighlightedProductController::class);
-
-    Route::resource('/admin/dashboard/news', NewsPostController::class);
-
-    Route::resource('/admin/dashboard/headers', HeaderController::class);
-});
-
+/*
+|--------------------------------------------------------------------------
+| Admin Routes (Dashboard)
+|--------------------------------------------------------------------------
+*/
 require __DIR__ . '/auth.php';
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes (Super Admin + Admin)
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth'])->group(function () {
+
+    // Dashboard (accessible by both admins and super admins)
+    Route::get('/admin/dashboard', [DashboardController::class, 'index'])
+        ->middleware('admin_role')
+        ->name('admin.dashboard');
+
+    // Profile edit/update for authenticated admin or super admin
+    Route::get('/admin/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/admin/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Super Admin Only Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::middleware(['super_admin'])->group(function () {
+        // User Management (CRUD for admins + super admins)
+        Route::resource('/admin/dashboard/users', AdminUsersController::class);
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin + Super Admin Routes (All other resources)
+    |--------------------------------------------------------------------------
+    */
+    Route::middleware(['admin_role'])->group(function () {
+
+        Route::resource('/admin/dashboard/footer_contacts', FooterContactsController::class);
+        Route::resource('/admin/dashboard/stats', StatController::class);
+        Route::resource('/admin/dashboard/partners', PartnerController::class);
+        Route::resource('/admin/dashboard/why_finista', WhyFinistaController::class);
+        Route::resource('/admin/dashboard/testimonials', TestimonialController::class);
+        Route::resource('/admin/dashboard/core_values', CoreValueController::class);
+        Route::resource('/admin/dashboard/about_section', AboutSectionController::class)
+            ->only(['edit', 'update', 'index']);
+        Route::resource('/admin/dashboard/journeys', JourneyController::class)->except(['show']);
+        Route::resource('/admin/dashboard/leadership', LeadershipTeamController::class)->except(['show']);
+        Route::resource('/admin/dashboard/solutions', SolutionController::class);
+        Route::resource('/admin/dashboard/steps', StepController::class);
+        Route::resource('/admin/dashboard/features', FeatureController::class);
+        Route::resource('/admin/dashboard/products', ProductController::class);
+        Route::resource('/admin/dashboard/more_products', MoreProductController::class);
+        Route::resource('/admin/dashboard/map_locations', MapLocationController::class);
+        Route::resource('/admin/dashboard/contact_inquiries', AdminContactInquiryController::class);
+
+        // Mark/Undo inquiries
+        Route::put('/admin/dashboard/contact_inquiries/{contactInquiry}/resolve', [AdminContactInquiryController::class, 'markResolved'])
+            ->name('contact_inquiries.markResolved');
+        Route::put('/admin/dashboard/contact_inquiries/{contactInquiry}/undo', [AdminContactInquiryController::class, 'undoResolved'])
+            ->name('contact_inquiries.undoResolved');
+
+        Route::resource('/admin/dashboard/faqs', FaqController::class);
+        Route::resource('/admin/dashboard/highlighted_products', HighlightedProductController::class);
+        Route::resource('/admin/dashboard/news', NewsPostController::class);
+        Route::resource('/admin/dashboard/headers', HeaderController::class);
+    });
+});

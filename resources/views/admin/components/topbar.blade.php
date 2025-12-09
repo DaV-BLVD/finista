@@ -1,22 +1,44 @@
-<header class="h-16 bg-white shadow flex items-center justify-between px-6 z-10">
+<header
+    class="h-16 bg-white shadow-md flex items-center justify-between px-6 sticky top-0 z-30 border-b border-gray-200">
+
+    {{-- Left Section: Branding & Sidebar Toggle --}}
     <div class="flex items-center gap-4">
-        <button id="open-sidebar" class="md:hidden text-gray-600 focus:outline-none">
+        {{-- Mobile Sidebar Toggle --}}
+        <button id="open-sidebar"
+            class="md:hidden text-primary focus:outline-none p-1 rounded hover:bg-gray-100 transition">
             <i class="fas fa-bars text-xl"></i>
         </button>
-        <div class="hidden md:flex items-center bg-gray-100 rounded-full px-4 py-2 w-64">
-            <i class="fas fa-search text-gray-400 mr-2"></i>
-            <input type="text" placeholder="Search..."
-                class="bg-transparent border-none outline-none text-sm text-gray-600 w-full">
+
+        {{-- Branding/Page Title Area (Can be customized later) --}}
+        <div class="hidden sm:block text-xl font-bold text-gray-800">
+            <span class="text-primary">Admin</span> Panel
         </div>
     </div>
 
-    <div class="flex items-center space-x-4">
-        <div class="flex items-center gap-2">
+    <div x-data="{ open: false }" class="relative">
+
+        <button @click="open = !open"
+            class="flex items-center gap-2 p-2 rounded-full hover:bg-gray-100 focus:outline-none transition">
+
             <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=0D8ABC&color=fff"
-                alt="User" class="h-8 w-8 rounded-full">
-            <span class="hidden md:block font-medium text-gray-700 text-sm">
+                class="h-9 w-9 rounded-full border-2 border-primary shadow-sm">
+
+            <span class="hidden md:block font-semibold text-gray-700">
                 {{ Auth::user()->name }}
             </span>
+
+            <i class="fas fa-chevron-down text-xs text-gray-400 hidden md:block"></i>
+        </button>
+
+        {{-- Dropdown menu --}}
+        <div x-show="open" @click.outside="open = false"
+            class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg overflow-hidden z-50">
+
+            <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                <i class="fas fa-user mr-2"></i> Profile
+            </a>
         </div>
+
     </div>
+
 </header>
