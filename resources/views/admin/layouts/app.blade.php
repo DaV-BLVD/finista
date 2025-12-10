@@ -16,7 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
 
-    @vite(['resources/css/admin/app.css', 'resources/js/admin/app.js'])
+    @vite(['public/css/admin/app.css', 'public/css/admin/app.js'])
 
 
 </head>

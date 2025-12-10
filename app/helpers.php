@@ -1,0 +1,5 @@
+"autoload": {
+    "files": [
+        "app/helpers.php"
+    ]
+}

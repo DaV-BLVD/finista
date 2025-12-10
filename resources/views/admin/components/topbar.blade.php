@@ -17,17 +17,24 @@
 
     <div x-data="{ open: false }" class="relative">
 
-        <button @click="open = !open"
-            class="flex items-center gap-2 p-2 rounded-full hover:bg-gray-100 focus:outline-none transition">
+        <button @click="open = !open" class="flex items-center gap-3 p-2 pr-3 rounded-full 
+           text-gray-700 hover:bg-gray-100 
+           focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 
+           transition duration-200" :aria-expanded="open.toString()">
 
+            {{-- User Avatar --}}
             <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=0D8ABC&color=fff"
-                class="h-9 w-9 rounded-full border-2 border-primary shadow-sm">
+                alt="User Avatar" class="h-9 w-9 rounded-full object-cover border-2 border-primary shadow-md">
 
-            <span class="hidden md:block font-semibold text-gray-700">
+            {{-- User Name --}}
+            <span class="hidden md:block font-semibold text-base whitespace-nowrap">
                 {{ Auth::user()->name }}
             </span>
 
-            <i class="fas fa-chevron-down text-xs text-gray-400 hidden md:block"></i>
+            {{-- Dropdown Indicator --}}
+            <i class="fas fa-chevron-down text-xs text-gray-400 hidden md:block transition-transform duration-300"
+                :class="{'rotate-180': open}">
+            </i>
         </button>
 
         {{-- Dropdown menu --}}
